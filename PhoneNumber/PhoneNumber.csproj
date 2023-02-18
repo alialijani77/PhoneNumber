@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PhoneNumber.DataLayer\PhoneNumber.DataLayer.csproj" />
+    <ProjectReference Include="..\PhoneNumber.IoC\PhoneNumber.IoC.csproj" />
   </ItemGroup>
 
 </Project>

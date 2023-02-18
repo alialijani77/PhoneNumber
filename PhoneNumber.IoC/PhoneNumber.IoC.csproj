@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PhoneNumber.Application\PhoneNumber.Application.csproj" />
+    <ProjectReference Include="..\PhoneNumber.DataLayer\PhoneNumber.DataLayer.csproj" />
+    <ProjectReference Include="..\PhoneNumber.Domain\PhoneNumber.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
