@@ -16,5 +16,7 @@ namespace PhoneNumber.Domain.Interfaces
 		Task Save();
 
 		Task UpdatePhoneNumber(PhoneNumber.Domain.Entities.PhoneNumber phoneNumber);
+
+		Task<IReadOnlyCollection<PhoneNumber.Domain.Entities.PhoneNumber>> GetPhoneNumbers();
 	}
 }

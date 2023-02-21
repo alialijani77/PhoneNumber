@@ -40,3 +40,25 @@ function LoadPhoneNumberModalBody(PhoneNumberId) {
 function hiddenPhoneNumberModalBody() {
     $("#PhoneNumberModal").modal("hide");
 }
+
+
+function PhoneNumberFormSubmited(response) {
+    console.log(response.status)
+    CloseLoading();
+    if (response.status === "success") {
+        /* swal("Done", "The Operation Has Done Successfully", "success");*/
+        Swal.fire(
+            'Done',
+            'The Operation Has Done Successfully',
+            'success'
+        )
+        $("#PhoneNumberModal").modal("hide");
+        $("#PhoneNumberDiv").load(location.href + " #PhoneNumberDiv");
+    } else {
+        Swal.fire(
+            'Error',
+            'Some thing went wrong please try again ...',
+            'error'
+        )
+    }
+}

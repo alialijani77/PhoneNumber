@@ -1,54 +1,64 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IReadOnlyCollection<PhoneNumber.Domain.Entities.PhoneNumber>
+@{
+	ViewData["Title"] = "Home Page";
 }
 
 <div class="row">
-    <div class="col-md-12 table-responsive" id="PhoneNumberDiv">
-        <div class="d-flex justify-content-between align-items-center mb-3 mt-3">
-            <h4>List of PhoneNumber</h4>
-            <button type="button" class="btn btn-success" onclick="LoadPhoneNumberModalBody(0)">Add Phone</button>
-        </div>
+	<div class="col-md-12 table-responsive" id="PhoneNumberDiv">
+		<div class="d-flex justify-content-between align-items-center mb-3 mt-3">
+			<h4>List of PhoneNumber</h4>
+			<button type="button" class="btn btn-success" onclick="LoadPhoneNumberModalBody(0)">Add Phone</button>
+		</div>
+		@if (Model != null && Model.Any())
+		{
+			<table class="table text-center table-bordered table-hover">
+				<caption>List of PhoneNumber</caption>
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Id</th>
+						<th scope="col">Name</th>
+						<th scope="col">Family</th>
+						<th scope="col">Phone</th>
+						<th scope="col">Email</th>
+						<th scope="col">Address</th>
+						<th scope="col">Commands</th>
+					</tr>
+				</thead>
+				<tbody>
 
-        <table class="table text-center table-bordered table-hover">
-            <caption>List of PhoneNumber</caption>
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Family</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Commands</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Ali</td>
-                    <td>Alie</td>
-                    <td>09198791211</td>
-                    <td>test@test.com</td>
-                    <td>iran-tehran</td>
-                    <td>
-                        <button type="button" class="btn btn-warning btn-sm">Edit</button>
-                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td>@item.Id</td>
+							<td>@item.Name</td>
+							<td>@item.Family</td>
+							<td>@item.Phone</td>
+							<td>@item.Email</td>
+							<td>@item.Address</td>
+							<td>
+								<button type="button" class="btn btn-warning btn-sm">Edit</button>
+								<button type="button" class="btn btn-danger btn-sm">Delete</button>
+							</td>
+						</tr>
+					}
 
-        <div class="alert alert-info w-100 text-center d-none" role="alert">
-            No Phone Founded
-        </div>
-    </div>
+				</tbody>
+			</table>
+		}
+		else
+		{
+			<div class="alert alert-info w-100 text-center" role="alert">
+				No Phone Founded
+			</div>
+		}
+	</div>
 </div>
 
 <!-- Modal -->
 <div class="modal fade" id="PhoneNumberModal" tabindex="-1" aria-labelledby="PhoneNumberModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content" id="PhoneNumberModalContent">
-
-        </div>
-    </div>
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content" id="PhoneNumberModalContent">
+		</div>
+	</div>
 </div>
+

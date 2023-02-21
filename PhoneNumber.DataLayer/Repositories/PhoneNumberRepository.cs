@@ -32,19 +32,27 @@ namespace PhoneNumber.DataLayer.Repositories
         {
             return await _context.phoneNumbers.FirstOrDefaultAsync(p => p.Id == id);
         }
+
         #endregion
 
         #region Save
         public async Task Save()
         {
-            _context.SaveChanges(); 
+            _context.SaveChanges();
         }
         #endregion
 
         #region Update
         public async Task UpdatePhoneNumber(Domain.Entities.PhoneNumber phoneNumber)
         {
-             _context.Update(phoneNumber);
+            _context.Update(phoneNumber);
+        }
+        #endregion
+
+        #region GetAll
+        public async Task<IReadOnlyCollection<Domain.Entities.PhoneNumber>> GetPhoneNumbers()
+        {
+            return await _context.phoneNumbers.ToListAsync();
         }
         #endregion
 

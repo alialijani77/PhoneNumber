@@ -13,5 +13,7 @@ namespace PhoneNumber.Application.Services.Interfaces
 
 		Task<CreateOrEditPhoneNumberViewModel> GetPhoneNumberForloadPhoneNumberIdmodalbody(long PhoneNumberId);
 
+		Task<IReadOnlyCollection<Domain.Entities.PhoneNumber>> GetPhoneNumbers();
+
     }
 }

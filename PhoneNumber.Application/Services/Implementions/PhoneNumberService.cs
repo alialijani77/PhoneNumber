@@ -28,6 +28,7 @@ namespace PhoneNumber.Application.Services.Implementions
                 var phoneNumbercreate = new PhoneNumber.Domain.Entities.PhoneNumber();
                 phoneNumbercreate.Name= createOrEditPhoneNumber.Name;
                 phoneNumbercreate.Family = createOrEditPhoneNumber.Family;
+                phoneNumbercreate.Phone = createOrEditPhoneNumber.Phone;
                 phoneNumbercreate.Email= createOrEditPhoneNumber.Email;
                 phoneNumbercreate.Address = createOrEditPhoneNumber.Address;
                 
@@ -42,7 +43,8 @@ namespace PhoneNumber.Application.Services.Implementions
 
             phoneNumberedit.Name = createOrEditPhoneNumber.Name;
             phoneNumberedit.Family = createOrEditPhoneNumber.Family;
-            phoneNumberedit.Email = createOrEditPhoneNumber.Email;
+			phoneNumberedit.Phone = createOrEditPhoneNumber.Phone;
+			phoneNumberedit.Email = createOrEditPhoneNumber.Email;
             phoneNumberedit.Address = createOrEditPhoneNumber.Address;
 
             await _phoneNumberRepository.UpdatePhoneNumber(phoneNumberedit);
@@ -67,6 +69,13 @@ namespace PhoneNumber.Application.Services.Implementions
                 Email = result.Email,
                 Address = result.Address
             };
+        }
+        #endregion
+
+        #region GetAll
+        public async Task<IReadOnlyCollection<Domain.Entities.PhoneNumber>> GetPhoneNumbers()
+        {
+            return await _phoneNumberRepository.GetPhoneNumbers();
         }
         #endregion
     }
