@@ -52,7 +52,7 @@ namespace PhoneNumber.Application.Services.Implementions
             return true;
         }
 
-        public async Task<CreateOrEditPhoneNumberViewModel> GetPhoneNumberForloadPhoneNumberIdmodalbody(long PhoneNumberId)
+		public async Task<CreateOrEditPhoneNumberViewModel> GetPhoneNumberForloadPhoneNumberIdmodalbody(long PhoneNumberId)
         {
             var result = await _phoneNumberRepository.GetPhoneNumberById(PhoneNumberId);
 
@@ -67,6 +67,7 @@ namespace PhoneNumber.Application.Services.Implementions
                 Name = result.Name,
                 Family = result.Family,
                 Email = result.Email,
+                Phone = result.Phone,
                 Address = result.Address
             };
         }
@@ -77,6 +78,21 @@ namespace PhoneNumber.Application.Services.Implementions
         {
             return await _phoneNumberRepository.GetPhoneNumbers();
         }
-        #endregion
-    }
+		#endregion
+
+		#region Delete
+		public async Task<bool> DeletePhone(long PhoneNumberId)
+		{
+            var phone = await _phoneNumberRepository.GetPhoneNumberById(PhoneNumberId);
+            if(phone == null && phone.IsDelete)
+            {
+                return false;
+            }
+            phone.IsDelete = true;
+            await _phoneNumberRepository.UpdatePhoneNumber(phone);  
+            await _phoneNumberRepository.Save();
+            return true;
+		}
+		#endregion
+	}
 }

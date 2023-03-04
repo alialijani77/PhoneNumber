@@ -15,5 +15,7 @@ namespace PhoneNumber.Application.Services.Interfaces
 
 		Task<IReadOnlyCollection<Domain.Entities.PhoneNumber>> GetPhoneNumbers();
 
-    }
+		Task<bool> DeletePhone(long PhoneNumberId);
+
+	}
 }

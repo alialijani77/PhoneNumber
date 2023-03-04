@@ -43,7 +43,6 @@ function hiddenPhoneNumberModalBody() {
 
 
 function PhoneNumberFormSubmited(response) {
-    console.log(response.status)
     CloseLoading();
     if (response.status === "success") {
         /* swal("Done", "The Operation Has Done Successfully", "success");*/
@@ -62,3 +61,43 @@ function PhoneNumberFormSubmited(response) {
         )
     }
 }
+
+
+function DeletePhone(PhoneNumberId) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "/DeletePhone",
+                type: "get",
+                data: {
+                    PhoneNumberId: PhoneNumberId
+                },
+                beforeSend: function () {
+                    StartLoading();
+                },
+                success: function (response) {
+                    CloseLoading();
+                    $("#PhoneNumberDiv").load(location.href + " #PhoneNumberDiv");
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )                  
+                },
+                error: function () {
+                    CloseLoading();
+                }
+            });
+           
+        }
+    })
+}
+

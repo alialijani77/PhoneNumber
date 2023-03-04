@@ -43,6 +43,21 @@ namespace PhoneNumber.Controllers
 			}
 		}
 
+		[HttpGet("DeletePhone")]
+		public async Task<IActionResult> DeletePhone(long PhoneNumberId)
+		{
+			var result = await _phoneNumberService.DeletePhone(PhoneNumberId);
+
+			if (result)
+			{
+				return new JsonResult(new { status = "success" });
+			}
+			else
+			{
+				return new JsonResult(new { status = "error" });
+			}
+		}
+
 
 	}
 }

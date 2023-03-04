@@ -36,8 +36,8 @@
 							<td>@item.Email</td>
 							<td>@item.Address</td>
 							<td>
-								<button type="button" class="btn btn-warning btn-sm">Edit</button>
-								<button type="button" class="btn btn-danger btn-sm">Delete</button>
+								<button type="button" class="btn btn-warning btn-sm" onclick="LoadPhoneNumberModalBody(`@item.Id`)">Edit</button>
+								<button type="button" class="btn btn-danger btn-sm" onclick="DeletePhone(`@item.Id`)">Delete</button>
 							</td>
 						</tr>
 					}

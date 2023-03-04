@@ -52,9 +52,9 @@ namespace PhoneNumber.DataLayer.Repositories
         #region GetAll
         public async Task<IReadOnlyCollection<Domain.Entities.PhoneNumber>> GetPhoneNumbers()
         {
-            return await _context.phoneNumbers.ToListAsync();
+            return await _context.phoneNumbers.Where(p => !p.IsDelete).ToListAsync();
         }
-        #endregion
+		#endregion
 
-    }
+	}
 }
